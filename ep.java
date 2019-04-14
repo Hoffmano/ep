@@ -14,18 +14,22 @@ class ep {
         System.out.println("NUMERO DE BITS COM BIT DE SINAL?");
 
         binaryConvert.setNumBits(scanner.nextInt());
+        System.out.println();
 
     
 
         System.out.println("A COM BIT DE SINAL?");
         dados.setA(scanner.nextInt());
+        System.out.println();
 
         System.out.println("B COM BIT DE SINAL?");
         dados.setB(scanner.nextInt());
+        System.out.println();
 
         System.out.println("OPERACAO?");
-        System.out.println("0 == SOM; 1 == SUB; 2 == MUL; 3 == DIV");
+        System.out.println("0 == SUM; 1 == SUB; 2 == MUL; 3 == DIV");
         dados.setOperacao(scanner.nextInt());
+        System.out.println();
 
         scanner.close();
 
