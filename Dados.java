@@ -1,15 +1,16 @@
-import java.util.Arrays;
-import java.lang.*;
+//import java.util.Arrays;
+//import java.lang.*;
 
 class Dados {
 
     BinaryConvert binaryConvert = new BinaryConvert();
+    //Calculadora calculadora = new Calculadora();
 
     private static int a, b;
     private static int[] aBinary = new int[BinaryConvert.getNumBits()];
     private static int[] bBinary = new int[BinaryConvert.getNumBits()];
     private static int intA, intB;
-    private static boolean aC = false, bC = false;
+    //private static boolean aC = false, bC = false;
 
     // 0 == soma; 1 == subtracao; 2 == multiplicacao; 3 == divisao
     private static int operacao;
@@ -48,38 +49,38 @@ class Dados {
         Dados.a = a;
         Dados.aBinary = binaryConvert.convert(a);
 
-        if(checkBinary(Dados.aBinary)){
-            System.out.println("ERRO NUMERO NAO BINARIO");
-        }
+        checkBinary(Dados.aBinary);
 
-        String s = Arrays.toString(Dados.aBinary);
-
-        s = s.replaceAll(", ", "");
-        s = s.replace("[", "");
-        s = s.replace("]", "");
+        String s = Calculadora.arrayString(Dados.aBinary);
 
         Dados.intA = Integer.parseInt(s);
 
-        System.out.println(s);
+        //System.out.println("A BINARIO: " + s);
+
+        if(Dados.aBinary[0] == 1){
+            System.out.println(Calculadora.arrayString(complement(Dados.getaBinary())));
+            Dados.aBinary = complement(Dados.getaBinary());
+        }
     }
 
     public void setB(int b) {
         Dados.b = b;
         Dados.bBinary = binaryConvert.convert(b);
+        
 
-        if(checkBinary(Dados.aBinary)){
-            System.out.println("ERRO NUMERO NAO BINARIO");
-        }
+        checkBinary(Dados.bBinary);
 
-        String s = Arrays.toString(Dados.bBinary);
-
-        s = s.replaceAll(", ", "");
-        s = s.replace("[", "");
-        s = s.replace("]", "");
+        String s = Calculadora.arrayString(Dados.bBinary);
 
         Dados.intB = Integer.parseInt(s);
 
-        System.out.println(s);
+        //System.out.println("B BINARIO: " + s);
+
+        if(Dados.bBinary[0] == 1){
+            System.out.println(Calculadora.arrayString(complement(Dados.getbBinary())));
+            Dados.bBinary = complement(Dados.getbBinary());
+        }
+        
     }
 
     public void setOperacao(int operacao) {
@@ -117,17 +118,45 @@ class Dados {
     }
 
     //testa a entrada para saber se esta é ou nao binaria
-    private boolean checkBinary(int[] arr){
-        for(int i : arr){
-            if(i != 0 || i != 1){
-                return true;
+    private void checkBinary(int[] arr){
+        for(int i = 0; i < BinaryConvert.getNumBits(); i++){
+            if(arr[i] != 0 && arr[i] != 1){
+
+                System.out.println("ERRO NUMERO NAO BINARIO");
+                System.out.println(arr[i]);
+
+                Runtime.getRuntime().exit(1);
             }
         }
-        return false;
     }
 
-    private 1complement(){
-        
+    private int[] complement(int[] arr){
+
+        //String s = Arrays.toString(arr);
+        //System.out.println(s);
+
+        int[] comp = new int[BinaryConvert.getNumBits()];
+
+        for (int i = 0; i < BinaryConvert.getNumBits(); i++) {
+            if(arr[i] == 0){
+                comp[i] = 1;
+            }
+            else comp[i] = 0;
+        }
+
+        int compI = arrayInt(comp);
+
+        //System.out.println(compI);
+
+        return Calculadora.soma(compI, 1);
+
+        //String s = Calculadora.arrayString(Calculadora.soma(compI, 1));
+
+        //System.out.println("A COMPLEMENTO 2: " + s);
     }
 
+    private int arrayInt(int[] arr)
+    {
+        return Integer.parseInt(Calculadora.arrayString(arr));
+    }
 }

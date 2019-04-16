@@ -15,8 +15,10 @@ class BinaryConvert {
 
         String string = Integer.toString(x);
 
-        if (string.length() >= getNumBits()) {
+        //ERRO: ESTOUROU NUMERO DE BITS DETERMINADO
+        if (string.length() > getNumBits()) {
             System.out.println("ERRO: ESTOUROU NUMERO DE BITS DETERMINADO");
+            Runtime.getRuntime().exit(1);
         }
 
         String[] arr = string.split("");
@@ -27,14 +29,6 @@ class BinaryConvert {
 
         int counter = 0;
         for (int i = 0; i < BinaryConvert.numBits; i++) {
-            if (i == 0) {
-                if (x < 0) {
-                    intArr[0] = 1;
-
-                } else
-                    intArr[0] = 0;
-                continue;
-            }
             if (i <= zeros) {
                 intArr[i] = 0;
                 continue;
@@ -50,4 +44,3 @@ class BinaryConvert {
         return intArr;
     }
 }
-

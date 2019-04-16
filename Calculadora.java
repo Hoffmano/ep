@@ -6,11 +6,13 @@ class Calculadora {
     private int resultado;
 
     public int resultado() {
+        System.out.println("RESULTADO:");
+
         switch (dados.getOperacao()) {
         case 0:
-            // System.out.println("ok");
-            soma(Dados.getIntA(), Dados.getIntB());
-            // System.out.println("ok");
+            System.out.println(arrayString(soma(Dados.getIntA(), Dados.getIntB())));
+            
+            
         case 1:
             // return (dados.getA() - dados.getB());
         case 2:
@@ -22,6 +24,16 @@ class Calculadora {
         }
     }
 
+    public static String arrayString(int[] res){
+        String s = Arrays.toString(res);
+
+        s = s.replaceAll(", ", "");
+        s = s.replace("[", "");
+        s = s.replace("]", "");
+        
+        return s;
+    }
+
     private void setResultado() {
         this.resultado = resultado();
     }
@@ -31,7 +43,10 @@ class Calculadora {
         System.out.println(dados.getA() + " " + dados.getCharOperador() + " " + dados.getB() + " = " + resultado);
     }
 
-    public void soma(int binary1, int binary2) {
+
+    //ESPLICA A SOMA COM COMPLEMENTO DE DOIS, OVERFLOW....
+    //http://chortle.ccsu.edu/assemblytutorial/Chapter-08/ass08_24.html
+    public static int[] soma(int binary1, int binary2) {
         
         // codigo retirado da internet
         // https://www.w3resource.com/java-exercises/basic/java-basic-exercise-17.php
@@ -44,7 +59,7 @@ class Calculadora {
 
         while (binary1 != 0 || binary2 != 0) {
             sum[i--] = (int) ((binary1 % 10 + binary2 % 10 + remainder) % 2);
-             remainder = (int) ((binary1 % 10 + binary2 % 10 + remainder) / 2);
+            remainder = (int) ((binary1 % 10 + binary2 % 10 + remainder) / 2);
             binary1 = binary1 / 10;
             binary2 = binary2 / 10;
         }
@@ -53,21 +68,14 @@ class Calculadora {
             if (i >= 0) {
                 sum[i] = remainder;
             }
-        }
+            else{
+                System.out.println("ERRO: OVERFLOW");
+                Runtime.getRuntime().exit(1);
+            }
+        } 
 
-
-        String s = Arrays.toString(sum);
-
-        s = s.replaceAll(", ", "");
-        s = s.replace("[", "");
-        s = s.replace("]", "");
-
-        System.out.println("RESULTADO:");
-        System.out.println(s);
+        
+        return sum;
 
     }
 }
-
-
-
-
