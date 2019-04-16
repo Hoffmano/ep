@@ -15,8 +15,6 @@ class ep {
 
         binaryConvert.setNumBits(scanner.nextInt());
 
-    
-
         System.out.println("A COM BIT DE SINAL?");
         dados.setA(scanner.nextInt());
 
@@ -28,6 +26,8 @@ class ep {
         dados.setOperacao(scanner.nextInt());
 
         scanner.close();
+
+        System.out.println("hi");
 
         calculadora.resultado();
 
