@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "RUN",
+            "request": "launch",
+            "mainClass": "ep",
+            "console": "integratedTerminal",
+            "projectName": "ep-1_15fef2f9"
+        }
+    ]
+}
