@@ -7,6 +7,13 @@ class Calculadora {
     private int resultado;
 
     private static void overflowDetection(int[] a, int[] b, int[] c) {
+       
+        /*
+        System.out.println(arrayString(a));
+        System.out.println(arrayString(b));
+        System.out.println(arrayString(c));
+        */
+
         if ((a[0] == 0 && b[0] == 0 && c[0] == 1) || (a[0] == 1 && b[0] == 1 && c[0] == 0)) {
             System.out.println("OVERFLOW DETECTED");
             Runtime.getRuntime().exit(1);
@@ -91,6 +98,12 @@ class Calculadora {
         
          if (remainder != 0) { 
             if (i >= 0) {
+                if(i == 0){
+                    if(Dados.getOldA()[0] == 1 && Dados.getOldB()[0] == 1){
+                        System.out.println("OVERFLOW DETECTED");
+                        Runtime.getRuntime().exit(1);
+                    }
+                }
                 sum[i] = remainder; 
             }
             else{

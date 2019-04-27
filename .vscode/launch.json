@@ -6,7 +6,7 @@
             "request": "launch",
             "mainClass": "ep",
             "console": "integratedTerminal",
-            "projectName": "ep-1_15fef2f9"
+            "projectName": "ep-1"
         }
     ]
 }
